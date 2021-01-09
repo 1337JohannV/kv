@@ -1,0 +1,46 @@
+networks:
+  data:
+  frontend:
+
+services:
+  db:
+    networks:
+      - data
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 123kv
+      POSTGRES_USER: toimkond
+      POSTGRES_DB: pioneeripataljon
+
+    volumes:
+      - ../db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    networks:
+      - data
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "5555:5555"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: toimkond@kv.ee
+      PGADMIN_DEFAULT_PASSWORD: kv
+      PGADMIN_LISTEN_PORT: 5555
+
+
+#  front:
+#   networks:
+#      - frontend
+#    ports:
+#      - "4200:4200"
+
+#  backend:
+#    networks:
+#      - data
+#      - frontend
+#    ports:
+#      - "8080:8080"
+
