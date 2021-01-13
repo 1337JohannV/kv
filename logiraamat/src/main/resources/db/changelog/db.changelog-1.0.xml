@@ -5,14 +5,14 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet  author="Johann Veispak"  id="changelog-1.0">
-        <createTable  tableName="users">
-            <column  name="id"  type="SERIAL">
+        <createTable  tableName="service_user">
+            <column  name="id"  type="UUID">
                 <constraints  primaryKey="true"/>
             </column>
             <column  name="username"  type="VARCHAR(255)">
-                <constraints  nullable="false"/>
+                <constraints  unique="true" nullable="false"/>
             </column>
-            <column  name="password"  type="VARCHAR(255)">
+            <column  name="password"  type="VARCHAR">
                 <constraints  nullable="false"/>
             </column>
         </createTable>
